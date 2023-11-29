@@ -6,13 +6,13 @@
 /*   By: jgavairo <jgavairo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 12:04:17 by jgavairo          #+#    #+#             */
-/*   Updated: 2023/11/23 16:53:54 by jgavairo         ###   ########.fr       */
+/*   Updated: 2023/11/29 14:58:43 by jgavairo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_strlen(const char *s)
 {
 	size_t	i;
 

@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_printf_u.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgavairo <jgavairo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 10:48:48 by jgavairo          #+#    #+#             */
-/*   Updated: 2023/11/29 14:58:40 by jgavairo         ###   ########.fr       */
+/*   Created: 2023/11/27 14:25:29 by jgavairo          #+#    #+#             */
+/*   Updated: 2023/11/29 15:51:47 by jgavairo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_strchr(const char *s, int c)
+int	ft_printf_u(va_list args)
 {
-	unsigned char	uc;
+	unsigned int	unb;
+	int				count;
 
-	uc = (unsigned char)c;
-	while (*s)
+	count = 0;
+	unb = va_arg(args, unsigned int);
+	if (unb == 0)
+		return (ft_putchar_fd('0', 1));
+	if (ft_putnbr_fd_unb(unb, 1) < 0)
+		return (-1);
+	else
 	{
-		if (*s == uc)
-			return ((char *)s);
-		s++;
+		while (unb != 0)
+		{
+			unb /= 10;
+			count++;
+		}
 	}
-	if (uc == '\0')
-		return ((char *)s);
-	return (NULL);
+	return (count);
 }

@@ -6,13 +6,16 @@
 /*   By: jgavairo <jgavairo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:38:23 by jgavairo          #+#    #+#             */
-/*   Updated: 2023/11/23 16:41:39 by jgavairo         ###   ########.fr       */
+/*   Updated: 2023/11/29 14:58:36 by jgavairo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	ft_putstr_fd(char *s, int fd)
 {
-	write (fd, s, ft_strlen(s));
+	if (write (fd, s, ft_strlen(s)) < 0)
+		return (-1);
+	else
+		return (1);
 }

@@ -12,27 +12,20 @@
 
 #include "ft_printf.h"
 
-int	ft_putnbr_fd(long n, int fd)
+int	ft_putnbrbase_fd(unsigned long int n, int fd, char *base)
 {
 	int		count;
-	int		nega;
 
 	count = 0;
-	nega = 0;
-	if (n < 0)
 	{
-		if (ft_putchar_fd('-', 1) < 0)
+		if (n >= 16)
+			count = ft_putnbrbase_fd(n / 16, fd, base);
+		if (count < 0)
 			return (-1);
-		nega = 1;
-		n *= -1;
+		if (ft_putchar_fd(base[n % 16], fd) < 0)
+			return (-1);
+		else
+			count++;
 	}
-	if (n >= 10)
-		count = ft_putnbr_fd(n / 10, fd);
-	if (count < 0)
-		return (-1);
-	if (ft_putchar_fd((n % 10) + '0', fd) < 0)
-		return (-1);
-	else
-		count++;
-	return (count + nega);
+	return (count);
 }

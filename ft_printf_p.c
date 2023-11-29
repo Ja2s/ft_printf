@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_printf_p.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgavairo <jgavairo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 10:48:48 by jgavairo          #+#    #+#             */
-/*   Updated: 2023/11/29 14:58:40 by jgavairo         ###   ########.fr       */
+/*   Created: 2023/11/28 11:16:27 by jgavairo          #+#    #+#             */
+/*   Updated: 2023/11/29 15:43:04 by jgavairo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_strchr(const char *s, int c)
+int	ft_printf_p(va_list args)
 {
-	unsigned char	uc;
+	int			count;
+	void		*variable;
+	char		*base;
 
-	uc = (unsigned char)c;
-	while (*s)
-	{
-		if (*s == uc)
-			return ((char *)s);
-		s++;
-	}
-	if (uc == '\0')
-		return ((char *)s);
-	return (NULL);
+	base = "0123456789abcdef";
+	count = 0;
+	variable = va_arg(args, void *);
+	if (!variable)
+		return (write(1, "(nil)", 5));
+	if (ft_putstr_fd("0x", 1) < 0)
+		return (-1);
+	count = ft_putnbrbase_fd((unsigned long int)variable, 1, base);
+	return (count + 2);
 }

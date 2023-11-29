@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_printf_x.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgavairo <jgavairo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 10:48:48 by jgavairo          #+#    #+#             */
-/*   Updated: 2023/11/29 14:58:40 by jgavairo         ###   ########.fr       */
+/*   Created: 2023/11/27 16:15:42 by jgavairo          #+#    #+#             */
+/*   Updated: 2023/11/29 15:56:08 by jgavairo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_strchr(const char *s, int c)
+int	ft_printf_x(va_list args)
 {
-	unsigned char	uc;
+	unsigned int	nb;
+	int				count;
+	char			*base;
 
-	uc = (unsigned char)c;
-	while (*s)
-	{
-		if (*s == uc)
-			return ((char *)s);
-		s++;
-	}
-	if (uc == '\0')
-		return ((char *)s);
-	return (NULL);
+	base = "0123456789abcdef";
+	count = 0;
+	nb = va_arg(args, int);
+	count = ft_putnbrbase_fd(nb, 1, base);
+	return (count);
 }

@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_printf_id.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgavairo <jgavairo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 10:48:48 by jgavairo          #+#    #+#             */
-/*   Updated: 2023/11/29 14:58:40 by jgavairo         ###   ########.fr       */
+/*   Created: 2023/11/27 13:58:01 by jgavairo          #+#    #+#             */
+/*   Updated: 2023/11/29 15:40:30 by jgavairo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_strchr(const char *s, int c)
+int	ft_printf_id(va_list args)
 {
-	unsigned char	uc;
+	long	nb;
+	int		count;
 
-	uc = (unsigned char)c;
-	while (*s)
-	{
-		if (*s == uc)
-			return ((char *)s);
-		s++;
-	}
-	if (uc == '\0')
-		return ((char *)s);
-	return (NULL);
+	count = 0;
+	nb = va_arg(args, int);
+	count = ft_putnbr_fd(nb, 1);
+	if (count < 0)
+		return (-1);
+	return (count);
 }
