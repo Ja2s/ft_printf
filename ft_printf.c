@@ -27,3 +27,18 @@ int	ft_printf(const char *format, ...)
 	va_end(args);
 	return (result);
 }
+#include <stdio.h>
+int	main()
+{
+	int	result, tresult, i;
+	void	* test;
+	char	*str = "Jass";
+	result = ft_printf("%s\n%p\n%d", str, &test, INT_MAX);
+	ft_printf("\n");
+	ft_printf("%d", result);
+	ft_printf("\n");
+	tresult = printf("%s\n%p\n%d", str, &test, INT_MAX);
+	ft_printf("\n");
+	ft_printf("%d", tresult);
+	ft_printf("\n");
+}

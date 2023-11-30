@@ -19,14 +19,16 @@ int	ft_printf_checker(const char *format, va_list args)
 	int	count;
 	int	result;
 
-	count = 0;
 	result = 0;
 	while (*format)
 	{
 		if (*format == '%')
 		{
-			if (ft_strchr("cidsuxXp%", *(format++)) != NULL)
+			format++;
+			if (*format != '\0' && ft_strchr("cidsuxXp%", *format) != NULL)
 				count = ft_findformat(format++, args);
+			else if (*format != '\0')
+				count = ft_putchar_fd('%', 1);
 			if (count < 0)
 				return (-1);
 			result += count;
